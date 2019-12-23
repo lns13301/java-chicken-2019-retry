@@ -15,9 +15,9 @@ public class OutputView {
     public static void printTables(final List<Table> tables) {
         System.out.println("## 테이블 목록");
         final int size = tables.size();
-        printLine(TOP_LINE, size);
+        printTopLine(TOP_LINE, size);
         printTableNumbers(tables);
-        printLine(BOTTOM_LINE, size);
+        printBottomLine(BOTTOM_LINE, size);
     }
 
     public static void printMenus(final List<Menu> menus) {
@@ -26,7 +26,14 @@ public class OutputView {
         }
     }
 
-    private static void printLine(final String line, final int count) {
+    private static void printTopLine(final String line, final int count) {
+        for (int index = 0; index < count; index++) {
+            System.out.print(TOP_LINE);
+        }
+        System.out.println();
+    }
+
+    private static void printBottomLine(final String line, final int count) {
         for (int index = 0; index < count; index++) {
             System.out.print(printSeatYesOrNo(TableRepository.tables(), index));
         }
