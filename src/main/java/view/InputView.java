@@ -1,15 +1,19 @@
 package view;
 
+import domain.Validator;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
+    private static Validator validator = new Validator();
 
     public static int inputTableNumber() {
         System.out.println("## 주문할 테이블을 선택하세요.");
         String input = scanner.nextLine();
 
+        validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
             return value;
@@ -26,6 +30,7 @@ public class InputView {
         System.out.println("3 - 프로그램 종료");
         String input = scanner.nextLine();
 
+        validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
             return value;

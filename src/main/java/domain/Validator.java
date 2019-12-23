@@ -3,8 +3,10 @@ package domain;
 public class Validator {
     private static final int EMPTY = 0;
 
-    public boolean isNull(String value) {
-        return value.length() == EMPTY;
+    public void isNull(String value) {
+        if (value.length() == EMPTY) {
+            throw new IllegalArgumentException("입력된 값이 Null 입니다.");
+        }
     }
 
     public boolean isMoreThanZero(int value) {
