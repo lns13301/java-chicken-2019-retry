@@ -30,6 +30,7 @@
 	- Menu 입력
 	- Table 입력
 	- 등록할 메뉴 입력
+	- 메뉴의 수량 입력
 	
 2. OutputView
 

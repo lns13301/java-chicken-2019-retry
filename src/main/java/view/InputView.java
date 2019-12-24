@@ -17,7 +17,7 @@ public class InputView {
         try {
             int value = Integer.parseInt(input);
             return value;
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해야 합니다.");
             return inputTableNumber();
         }
@@ -32,7 +32,7 @@ public class InputView {
         try {
             int value = Integer.parseInt(input);
             return value;
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해야 합니다.");
             return inputMain();
         }
@@ -46,9 +46,23 @@ public class InputView {
         try {
             int value = Integer.parseInt(input);
             return value;
-        } catch (InputMismatchException e) {
+        } catch (NumberFormatException e) {
             System.out.println("숫자를 입력해야 합니다.");
             return inputMenu();
+        }
+    }
+
+    public static int inputCount() {
+        System.out.println("## 메뉴의 수량을 입력하세요.");
+        String input = scanner.nextLine();
+
+        validator.isNull(input);
+        try {
+            int value = Integer.parseInt(input);
+            return value;
+        } catch (NumberFormatException e) {
+            System.out.println("숫자를 입력해야 합니다.");
+            return inputCount();
         }
     }
 }
