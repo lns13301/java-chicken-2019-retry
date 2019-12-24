@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class TableRepository {
-    private static final int NEW_ORDER = 1;
     private static final List<Table> tables = new ArrayList<>();
 
     static {
@@ -20,13 +19,11 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
-    public static void registerNewOrder(int mainNumber, int tableNumber) {
-        if (mainNumber == NEW_ORDER) {
-            Table orderTable = tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
-            tables.remove(orderTable);
-            orderTable.isSeatEmpty(false);
-            tables.add(orderTable);
-        }
+    public static void registerNewOrder(int tableNumber) {
+        Table orderTable = tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
+        tables.remove(orderTable);
+        orderTable.isSeatEmpty(false);
+        tables.add(orderTable);
     }
 
     public static List<Table> sortTables() {

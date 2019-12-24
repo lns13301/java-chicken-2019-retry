@@ -6,6 +6,8 @@ import view.OutputView;
 import java.util.List;
 
 public class Pos {
+    private static final int ORDER_CODE = 1;
+    private static final int PAYMENT_CODE = 2;
     private static final int EXIT_CODE = 3;
 
     public static int posOn() {
@@ -22,7 +24,16 @@ public class Pos {
         OutputView.printTables(tables);
 
         final int tableNumber = InputView.inputTableNumber();
-        TableRepository.registerNewOrder(mainNumber, tableNumber);
+
+        if (mainNumber == ORDER_CODE) {
+            return orderPos(tableNumber);
+        }
+
+        return mainNumber;
+    }
+
+    private static int orderPos(int tableNumber) {
+        TableRepository.registerNewOrder(tableNumber);
 
         final List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
@@ -30,6 +41,6 @@ public class Pos {
         final int menuNumber = InputView.inputMenu();
         final int menuCount = InputView.inputCount();
 
-        return mainNumber;
+        return ORDER_CODE;
     }
 }
