@@ -34,13 +34,12 @@ public class Pos {
     }
 
     private static int orderPos(int tableNumber) {
-        TableRepository.registerNewOrder(tableNumber);
-
         final List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
 
         final int menuNumber = InputView.inputMenu();
         final int menuCount = InputView.inputCount();
+        TableRepository.registerNewOrder(tableNumber, menuNumber, menuCount);
 
         return ORDER_CODE;
     }

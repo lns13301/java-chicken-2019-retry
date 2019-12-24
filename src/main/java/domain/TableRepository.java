@@ -19,11 +19,18 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
-    public static void registerNewOrder(int tableNumber) {
+    public static void registerNewOrder(int tableNumber, int menuNumber, int menuCount) {
         Table orderTable = tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
         tables.remove(orderTable);
         orderTable.isSeatEmpty(false);
+        registerMenu(orderTable, menuNumber, menuCount);
         tables.add(orderTable);
+    }
+
+    private static void registerMenu(Table table, int menuNumber, int menuCount) {
+        for (int i = 0; i < menuCount; i++) {
+            table.addMenu(MenuRepository.addOrderMenu(menuNumber));
+        }
     }
 
     public static List<Table> sortTables() {
