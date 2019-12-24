@@ -61,4 +61,8 @@ public class OutputView {
         System.out.println("2 - 결제하기");
         System.out.println("3 - 프로그램 종료");
     }
+
+    static void printOrderPage() {
+        System.out.println(NEW_LINE + "## 주문 내역");
+    }
 }
