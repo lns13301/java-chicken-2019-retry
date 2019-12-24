@@ -67,7 +67,8 @@ public class InputView {
         }
     }
 
-    public static int inputPaymentMethod() {
+    public static int inputPaymentMethod(int tableNumber) {
+        OutputView.printPayPage(tableNumber);
         System.out.println("## 신용 카드는 1번, 현금은 2번");
         String input = scanner.nextLine();
 

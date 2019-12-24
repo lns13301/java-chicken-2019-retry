@@ -43,4 +43,12 @@ public class Pos {
 
         return ORDER_CODE;
     }
+
+    private static int payPos(int tableNumber) {
+        OutputView.printOrderPage(tableNumber);
+        InputView.inputPaymentMethod(tableNumber);
+        OutputView.printTotal(tableNumber);
+
+        return PAYMENT_CODE;
+    }
 }
