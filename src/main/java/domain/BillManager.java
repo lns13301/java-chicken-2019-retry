@@ -25,7 +25,7 @@ public class BillManager {
         return toPay;
     }
 
-    public static int distinctMenu(Map<Integer, List<Menu>> bills) {
+    private static int distinctMenu(Map<Integer, List<Menu>> bills) {
         return bills.keySet().stream().findFirst().get();
     }
 

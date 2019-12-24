@@ -64,8 +64,11 @@ public class OutputView {
         System.out.println("3 - 프로그램 종료");
     }
 
-    static void printOrderPage() {
+    static void printOrderPage(int tableNumber) {
         System.out.println(NEW_LINE + "## 주문 내역");
+        System.out.println("메뉴   수량   금액");
+        Map<Integer, List<Menu>> bill = BillManager.bill(TableRepository.tables().get(tableNumber));
+        System.out.println(BillManager.getBillPage(bill));
     }
 
     static int printPayPage(int tableNumber) {
@@ -74,7 +77,7 @@ public class OutputView {
     }
 
     static void printTotal(int tableNumber) {
-        System.out.println("## 최종 결제할 금액");
+        System.out.println(NEW_LINE + "## 최종 결제할 금액");
         Map<Integer, List<Menu>> bill = BillManager.bill(TableRepository.tables().get(tableNumber));
         System.out.println(BillManager.totalPayment(bill));
     }
