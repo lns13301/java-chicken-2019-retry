@@ -34,7 +34,21 @@ public class InputView {
             return value;
         } catch (InputMismatchException e) {
             System.out.println("숫자를 입력해야 합니다.");
-            return inputTableNumber();
+            return inputMain();
+        }
+    }
+
+    public static int inputMenu() {
+        System.out.println("## 등록할 메뉴를 선택하세요.");
+        String input = scanner.nextLine();
+
+        validator.isNull(input);
+        try {
+            int value = Integer.parseInt(input);
+            return value;
+        } catch (InputMismatchException e) {
+            System.out.println("숫자를 입력해야 합니다.");
+            return inputMenu();
         }
     }
 }

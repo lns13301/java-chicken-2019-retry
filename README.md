@@ -27,11 +27,14 @@
 
 1. InputView
 
-	- Menu 목록을 보여주고 입력받는 부분
+	- Menu 입력
+	- Table 입력
+	- 등록할 메뉴 입력
 	
 2. OutputView
 
-	- Table에 착석, 미착석 여부를 판별하여 출력하는 부분
+	- Table 에 착석, 미착석 여부를 판별하여 출력
+	- 메인화면을 출력
 	
 3. Validator
 
