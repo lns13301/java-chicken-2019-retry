@@ -20,4 +20,8 @@ public class Table {
     public void isSeatEmpty(boolean isSeatEmpty) {
         this.isSeatEmpty = isSeatEmpty;
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

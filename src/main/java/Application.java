@@ -16,6 +16,7 @@ public class Application {
         OutputView.printTables(tables);
 
         final int tableNumber = InputView.inputTableNumber();
+        TableRepository.registerNewOrder(mainNumber, tableNumber);
 
         final List<Menu> menus = MenuRepository.menus();
         OutputView.printMenus(menus);
