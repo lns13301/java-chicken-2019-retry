@@ -1,10 +1,12 @@
 package view;
 
+import domain.BillManager;
 import domain.Menu;
 import domain.Table;
 import domain.TableRepository;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";
@@ -69,5 +71,11 @@ public class OutputView {
     static int printPayPage(int tableNumber) {
         System.out.println(NEW_LINE + "## " + tableNumber + "번 테이블의 결제를 진행합니다.");
         return InputView.inputPaymentMethod();
+    }
+
+    static void printTotal(int tableNumber) {
+        System.out.println("## 최종 결제할 금액");
+        Map<Integer, List<Menu>> bill = BillManager.bill(TableRepository.tables().get(tableNumber));
+        System.out.println(BillManager.totalPayment(bill));
     }
 }
