@@ -1,8 +1,7 @@
 package domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TableRepository {
     private static final int NEW_ORDER = 1;
@@ -28,5 +27,9 @@ public class TableRepository {
             orderTable.isSeatEmpty(false);
             tables.add(orderTable);
         }
+    }
+
+    public static List<Table> sortTables() {
+        return tables.stream().sorted(Comparator.comparing(Table::getNumber)).collect(Collectors.toList());
     }
 }
