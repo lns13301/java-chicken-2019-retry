@@ -2,6 +2,8 @@ package domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Table {
     private final int number;
@@ -31,5 +33,9 @@ public class Table {
 
     public void addMenu(Menu menu) {
         menus.add(menu);
+    }
+
+    public Map<Integer, List<Menu>> bill() {
+        return menus.stream().collect(Collectors.groupingBy(Menu::getNumber));
     }
 }
