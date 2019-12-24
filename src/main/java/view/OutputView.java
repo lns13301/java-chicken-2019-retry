@@ -65,4 +65,9 @@ public class OutputView {
     static void printOrderPage() {
         System.out.println(NEW_LINE + "## 주문 내역");
     }
+
+    static int printPayPage(int tableNumber) {
+        System.out.println(NEW_LINE + "## " + tableNumber + "번 테이블의 결제를 진행합니다.");
+        return InputView.inputPaymentMethod();
+    }
 }
