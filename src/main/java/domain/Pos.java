@@ -28,6 +28,7 @@ public class Pos {
         if (mainNumber == ORDER_CODE) {
             return orderPos(tableNumber);
         }
+        payPos(tableNumber);
 
         return mainNumber;
     }
@@ -46,8 +47,7 @@ public class Pos {
 
     private static int payPos(int tableNumber) {
         OutputView.printOrderPage(tableNumber);
-        InputView.inputPaymentMethod(tableNumber);
-        OutputView.printTotal(tableNumber);
+        OutputView.printTotal(InputView.inputPaymentMethod(tableNumber), tableNumber);
 
         return PAYMENT_CODE;
     }

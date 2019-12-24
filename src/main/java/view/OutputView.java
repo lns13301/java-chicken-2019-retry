@@ -67,7 +67,10 @@ public class OutputView {
     public static void printOrderPage(int tableNumber) {
         System.out.println(NEW_LINE + "## 주문 내역");
         System.out.println("메뉴   수량   금액");
-        Map<Integer, List<Menu>> bill = BillManager.bill(TableRepository.tables().get(tableNumber));
+
+        Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
+        Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
+
         System.out.println(BillManager.getBillPage(bill));
     }
 
@@ -75,9 +78,12 @@ public class OutputView {
         System.out.println(NEW_LINE + "## " + tableNumber + "번 테이블의 결제를 진행합니다.");
     }
 
-    public static void printTotal(int tableNumber) {
+    public static void printTotal(int paymentMethod, int tableNumber) {
         System.out.println(NEW_LINE + "## 최종 결제할 금액");
-        Map<Integer, List<Menu>> bill = BillManager.bill(TableRepository.tables().get(tableNumber));
+
+        Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
+        Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
+
         System.out.println(BillManager.totalPayment(bill));
     }
 }
