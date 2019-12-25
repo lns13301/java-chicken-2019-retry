@@ -85,5 +85,6 @@ public class OutputView {
         Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
 
         System.out.println(BillManager.totalPayment(bill));
+        TableRepository.clearTable(tableNumber);
     }
 }
