@@ -71,7 +71,9 @@ public class OutputView {
         Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
         Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
 
-        System.out.println(BillManager.getBillPage(bill));
+        for (String menu : BillManager.getBillPage(bill)) {
+            System.out.println(menu);
+        }
     }
 
     static void printPayPage(int tableNumber) {
