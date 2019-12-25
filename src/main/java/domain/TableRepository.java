@@ -20,7 +20,7 @@ public class TableRepository {
     }
 
     public static void registerNewOrder(int tableNumber, int menuNumber, int menuCount) {
-        Table orderTable = tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
+        Table orderTable = findTable(tableNumber);
         tables.remove(orderTable);
         orderTable.isSeatEmpty(false);
         registerMenu(orderTable, menuNumber, menuCount);
@@ -35,5 +35,9 @@ public class TableRepository {
 
     public static List<Table> sortTables() {
         return tables.stream().sorted(Comparator.comparing(Table::getNumber)).collect(Collectors.toList());
+    }
+
+    private static Table findTable(int tableNumber) {
+        return tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
     }
 }
