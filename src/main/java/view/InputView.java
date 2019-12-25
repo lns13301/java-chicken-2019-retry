@@ -66,4 +66,19 @@ public class InputView {
             return inputCount();
         }
     }
+
+    public static int inputPaymentMethod(int tableNumber) {
+        OutputView.printPayPage(tableNumber);
+        System.out.println("## 신용 카드는 1번, 현금은 2번");
+        String input = scanner.nextLine();
+
+        validator.isNull(input);
+        try {
+            int value = Integer.parseInt(input);
+            return value;
+        } catch (NumberFormatException e) {
+            System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
+            return inputCount();
+        }
+    }
 }

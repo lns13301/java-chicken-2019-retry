@@ -1,10 +1,12 @@
 package view;
 
+import domain.BillManager;
 import domain.Menu;
 import domain.Table;
 import domain.TableRepository;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";
@@ -60,5 +62,28 @@ public class OutputView {
         System.out.println("1 - 주문등록");
         System.out.println("2 - 결제하기");
         System.out.println("3 - 프로그램 종료");
+    }
+
+    public static void printOrderPage(int tableNumber) {
+        System.out.println(NEW_LINE + "## 주문 내역");
+        System.out.println("메뉴   수량   금액");
+
+        Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
+        Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
+
+        System.out.println(BillManager.getBillPage(bill));
+    }
+
+    static void printPayPage(int tableNumber) {
+        System.out.println(NEW_LINE + "## " + tableNumber + "번 테이블의 결제를 진행합니다.");
+    }
+
+    public static void printTotal(int paymentMethod, int tableNumber) {
+        System.out.println(NEW_LINE + "## 최종 결제할 금액");
+
+        Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
+        Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
+
+        System.out.println(BillManager.totalPayment(bill));
     }
 }
