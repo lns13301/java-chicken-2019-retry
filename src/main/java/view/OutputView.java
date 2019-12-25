@@ -84,7 +84,7 @@ public class OutputView {
         Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
         Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
 
-        System.out.println(BillManager.totalPayment(bill, paymentMethod));
+        System.out.println(BillManager.totalPayment(bill, paymentMethod) + "원");
         TableRepository.clearTable(tableNumber);
     }
 }

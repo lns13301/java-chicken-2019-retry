@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class BillManager {
     private static final int EMPTY = 0;
+    private static final double CASH_DISCOUNT_AMOUNT = 0.95;
     private static final int CARD = 1;
     private static final int CASH = 2;
     private static final int BULK = 10;
@@ -28,7 +29,7 @@ public class BillManager {
             bills.remove(key);
         }
 
-        return toPay;
+        return (int) discountCash(toPay, paymentMethod);
     }
 
     private static int chickenDiscount(List<Menu> menus) {
@@ -40,6 +41,13 @@ public class BillManager {
 
     private static boolean isChicken(List<Menu> menus) {
         return menus.stream().anyMatch(menu -> menu.getCategory() == Category.CHICKEN);
+    }
+
+    private static double discountCash(int toPay, int paymentMethod) {
+        if (paymentMethod == CASH) {
+            return toPay * CASH_DISCOUNT_AMOUNT;
+        }
+        return toPay;
     }
 
     private static int distinctMenu(Map<Integer, List<Menu>> bills) {
