@@ -19,7 +19,7 @@ public class Pos {
     }
 
     private static int operatePos(int mainNumber) {
-        final List<Table> tables = TableRepository.tables();
+        final List<Table> tables = TableRepository.sortTables();
         OutputView.printTables(tables);
 
         final int tableNumber = InputView.inputTableNumber();
