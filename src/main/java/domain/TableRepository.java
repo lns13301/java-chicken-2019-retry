@@ -19,7 +19,7 @@ public class TableRepository {
         return Collections.unmodifiableList(tables);
     }
 
-    public static void registerNewOrder(int tableNumber, int menuNumber, int menuCount) {
+    static void registerNewOrder(int tableNumber, int menuNumber, int menuCount) {
         Table table = findTable(tableNumber);
         tables.remove(table);
         table.isSeatEmpty(false);
@@ -44,6 +44,6 @@ public class TableRepository {
     }
 
     public static Table findTable(int tableNumber) {
-        return tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
+        return tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().orElse(null);
     }
 }
