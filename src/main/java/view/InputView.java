@@ -1,6 +1,5 @@
 package view;
 
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import domain.MenuRepository;
 import domain.TableRepository;
 import domain.Validator;
@@ -10,6 +9,8 @@ import java.util.Scanner;
 
 public class InputView {
     private static final int MENU_MIN = 1;
+    private  static final int CARD = 1;
+    private static final int CASH = 2;
     private static final int MENU_MAX = 3;
     private static final String NEW_LINE = "\n";
     private static final Scanner scanner = new Scanner(System.in);
@@ -93,10 +94,13 @@ public class InputView {
         validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
+            validator.inputMismatchExceptionHandler(validator.isNumberBetween(CARD, CASH, value));
             return value;
         } catch (NumberFormatException e) {
             System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
-            return inputPaymentMethod(tableNumber);
+        } catch (InputMismatchException e) {
+            System.out.println(NEW_LINE + "결제 방식이 올바르게 입력되지 않았습니다. (1, 2 중에 입력)");
         }
+        return inputPaymentMethod(tableNumber);
     }
 }
