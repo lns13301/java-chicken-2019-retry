@@ -49,6 +49,7 @@
 	- inputMismatchException 처리를 하는 기능
 	- 입력된 번호가 Table 의 번호 중에 존재하는지 확인하는 기능
 	- 입력된 번호가 Menu 의 번호 중에 존재하는지 확인하는 기능
+	- 입력된 수량이 최대 99개를 넘어가는 것에 대한 예외 처리 기능
 	
 4. TableRepository
 

@@ -38,7 +38,7 @@ public class Pos {
         OutputView.printMenus(menus);
 
         final int menuNumber = InputView.inputMenu();
-        final int menuCount = InputView.inputCount();
+        final int menuCount = InputView.inputCount(menuNumber);
         TableRepository.registerNewOrder(tableNumber, menuNumber, menuCount);
 
         return ORDER_CODE;

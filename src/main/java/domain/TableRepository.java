@@ -43,7 +43,7 @@ public class TableRepository {
         return tables.stream().sorted(Comparator.comparing(Table::getNumber)).collect(Collectors.toList());
     }
 
-    private static Table findTable(int tableNumber) {
+    public static Table findTable(int tableNumber) {
         return tables.stream().filter(table -> table.getNumber() == tableNumber).findFirst().get();
     }
 }

@@ -67,18 +67,22 @@ public class InputView {
         return inputMenu();
     }
 
-    public static int inputCount() {
+    public static int inputCount(int menuNumber) {
         System.out.println(NEW_LINE + "## 메뉴의 수량을 입력하세요.");
         String input = scanner.nextLine();
 
         validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
+            validator.inputMismatchExceptionHandler(
+                    validator.isTableMenuOverflow(TableRepository.findTable(menuNumber), menuNumber, value));
             return value;
         } catch (NumberFormatException e) {
             System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
-            return inputCount();
+        } catch (InputMismatchException e) {
+            System.out.println(NEW_LINE + "입력된 수량이 올바르지 않습니다. (최대 99개까지 주문 가능)");
         }
+        return inputCount(menuNumber);
     }
 
     public static int inputPaymentMethod(int tableNumber) {
@@ -92,7 +96,7 @@ public class InputView {
             return value;
         } catch (NumberFormatException e) {
             System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
-            return inputCount();
+            return inputPaymentMethod(tableNumber);
         }
     }
 }

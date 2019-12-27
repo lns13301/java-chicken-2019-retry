@@ -5,6 +5,7 @@ import java.util.List;
 
 public class Validator {
     private static final int EMPTY = 0;
+    private static final int MAX_COUNT = 100;
 
     public void isNull(String value) {
         if (value.length() == EMPTY) {
@@ -28,7 +29,12 @@ public class Validator {
         return menus.stream().anyMatch(menu -> menu.getNumber() == value);
     }
 
-   public void inputMismatchExceptionHandler(boolean bool) {
+    public boolean isTableMenuOverflow(Table table, int menuNumber, int count) {
+        return count > EMPTY
+                && table.getMenu().stream().filter(menu -> menu.getNumber() == menuNumber).count() + count < MAX_COUNT;
+    }
+
+  public void inputMismatchExceptionHandler(boolean bool) {
         if (!bool)  {
             throw new InputMismatchException();
         }
