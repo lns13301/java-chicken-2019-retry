@@ -13,10 +13,6 @@ public class Validator {
         }
     }
 
-    public boolean isMoreThanZero(int value) {
-        return value > EMPTY;
-    }
-
     public boolean isNumberBetween(int min, int max, int value) {
         return value >= min && value <= max;
     }
