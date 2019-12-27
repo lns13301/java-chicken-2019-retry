@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Pos {
     private static final int ORDER_CODE = 1;
-    private static final int PAYMENT_CODE = 2;
     private static final int EXIT_CODE = 3;
 
     public static int posOn() {
@@ -44,10 +43,8 @@ public class Pos {
         return ORDER_CODE;
     }
 
-    private static int payPos(int tableNumber) {
+    private static void payPos(int tableNumber) {
         OutputView.printOrderPage(tableNumber);
         OutputView.printTotal(InputView.inputPaymentMethod(tableNumber), tableNumber);
-
-        return PAYMENT_CODE;
     }
 }
