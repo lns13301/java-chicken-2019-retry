@@ -1,6 +1,7 @@
 package view;
 
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import domain.MenuRepository;
 import domain.TableRepository;
 import domain.Validator;
 
@@ -56,11 +57,14 @@ public class InputView {
         validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
+            validator.inputMismatchExceptionHandler(validator.isNumberInMenu(MenuRepository.menus(), value));
             return value;
         } catch (NumberFormatException e) {
             System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
-            return inputMenu();
+        } catch (InputMismatchException e) {
+            System.out.println(NEW_LINE + "해당 번호의 메뉴는 존재하지 않습니다.");
         }
+        return inputMenu();
     }
 
     public static int inputCount() {

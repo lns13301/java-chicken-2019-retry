@@ -24,7 +24,11 @@ public class Validator {
         return tables.stream().anyMatch(table -> table.getNumber() == value);
     }
 
-    public void inputMismatchExceptionHandler(boolean bool) {
+    public boolean isNumberInMenu(List<Menu> menus, int value) {
+        return menus.stream().anyMatch(menu -> menu.getNumber() == value);
+    }
+
+   public void inputMismatchExceptionHandler(boolean bool) {
         if (!bool)  {
             throw new InputMismatchException();
         }

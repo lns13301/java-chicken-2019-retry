@@ -48,6 +48,7 @@
 	- 최소, 최대 값과 비교 값을 받아 범위안에 속하는지 판별하는 기능
 	- inputMismatchException 처리를 하는 기능
 	- 입력된 번호가 Table 의 번호 중에 존재하는지 확인하는 기능
+	- 입력된 번호가 Menu 의 번호 중에 존재하는지 확인하는 기능
 	
 4. TableRepository
 
