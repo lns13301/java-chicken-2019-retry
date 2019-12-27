@@ -1,6 +1,7 @@
 package domain;
 
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Validator {
     private static final int EMPTY = 0;
@@ -17,6 +18,10 @@ public class Validator {
 
     public boolean isNumberBetween(int min, int max, int value) {
         return value >= min && value <= max;
+    }
+
+    public boolean isNumberInTable(List<Table> tables, int value) {
+        return tables.stream().anyMatch(table -> table.getNumber() == value);
     }
 
     public void inputMismatchExceptionHandler(boolean bool) {

@@ -1,5 +1,7 @@
 package view;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import domain.TableRepository;
 import domain.Validator;
 
 import java.util.InputMismatchException;
@@ -19,11 +21,14 @@ public class InputView {
         validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
+            validator.inputMismatchExceptionHandler(validator.isNumberInTable(TableRepository.tables(), value));
             return value;
         } catch (NumberFormatException e) {
             System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
-            return inputTableNumber();
+        } catch (InputMismatchException e) {
+            System.out.println(NEW_LINE + "해당 테이블 번호는 존재하지 않습니다.");
         }
+        return inputTableNumber();
     }
 
     public static int inputMain() {
