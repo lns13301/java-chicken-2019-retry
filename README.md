@@ -46,6 +46,7 @@
 	- Null 일 경우 예외 처리 후 종료
 	- 0 보다 큰 수인지 판별하는 기능
 	- 최소, 최대 값과 비교 값을 받아 범위안에 속하는지 판별하는 기능
+	- inputMismatchException 처리를 하는 기능
 	
 4. TableRepository
 

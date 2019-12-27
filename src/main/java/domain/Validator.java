@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.InputMismatchException;
+
 public class Validator {
     private static final int EMPTY = 0;
 
@@ -13,7 +15,13 @@ public class Validator {
         return value > EMPTY;
     }
 
-    public boolean isNumberBetween(int max, int min, int value) {
+    public boolean isNumberBetween(int min, int max, int value) {
         return value >= min && value <= max;
+    }
+
+    public void inputMismatchExceptionHandler(boolean bool) {
+        if (!bool)  {
+            throw new InputMismatchException();
+        }
     }
 }

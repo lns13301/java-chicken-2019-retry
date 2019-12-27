@@ -6,6 +6,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputView {
+    private static final int MENU_MIN = 1;
+    private static final int MENU_MAX = 3;
     private static final String NEW_LINE = "\n";
     private static final Scanner scanner = new Scanner(System.in);
     private static Validator validator = new Validator();
@@ -32,11 +34,14 @@ public class InputView {
         validator.isNull(input);
         try {
             int value = Integer.parseInt(input);
+            validator.inputMismatchExceptionHandler(validator.isNumberBetween(MENU_MIN, MENU_MAX, value));
             return value;
         } catch (NumberFormatException e) {
             System.out.println(NEW_LINE + "숫자를 입력해야 합니다.");
-            return inputMain();
+        } catch (InputMismatchException e) {
+            System.out.println(NEW_LINE + "입력된 값이 1, 2, 3 중 하나가 아닙니다.");
         }
+        return inputMain();
     }
 
     public static int inputMenu() {
