@@ -7,6 +7,7 @@ import domain.TableRepository;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class OutputView {
     private static final String NEW_LINE = "\n";
@@ -18,9 +19,9 @@ public class OutputView {
     public static void printTables(final List<Table> tables) {
         System.out.println(NEW_LINE + "## 테이블 목록");
         final int size = tables.size();
-        printTopLine(TOP_LINE, size);
+        printTopLine(size);
         printTableNumbers(tables);
-        printBottomLine(BOTTOM_LINE, size);
+        printBottomLine(tables, size);
     }
 
     public static void printMenus(final List<Menu> menus) {
@@ -29,16 +30,16 @@ public class OutputView {
         }
     }
 
-    private static void printTopLine(final String line, final int count) {
+    private static void printTopLine(final int count) {
         for (int index = 0; index < count; index++) {
             System.out.print(TOP_LINE);
         }
         System.out.println();
     }
 
-    private static void printBottomLine(final String line, final int count) {
+    private static void printBottomLine(List<Table> tables, final int count) {
         for (int index = 0; index < count; index++) {
-            System.out.print(printSeatYesOrNo(TableRepository.tables(), index));
+            System.out.print(printSeatYesOrNo(tables, index));
         }
         System.out.println();
     }
@@ -68,8 +69,12 @@ public class OutputView {
         System.out.println(NEW_LINE + "## 주문 내역");
         System.out.println("메뉴   수량   금액");
 
-        Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
-        Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
+        Table table = TableRepository.tables()
+                .stream()
+                .filter(t -> t.getNumber() == tableNumber)
+                .findFirst()
+                .orElse(null);
+        Map<Integer, List<Menu>> bill = BillManager.bill(Objects.requireNonNull(table).getMenu());
 
         for (String menu : BillManager.getBillPage(bill)) {
             System.out.println(menu);
@@ -82,9 +87,12 @@ public class OutputView {
 
     public static void printTotal(int paymentMethod, int tableNumber) {
         System.out.println(NEW_LINE + "## 최종 결제할 금액");
-
-        Table table = TableRepository.tables().stream().filter(x -> x.getNumber() == tableNumber).findFirst().get();
-        Map<Integer, List<Menu>> bill = BillManager.bill(table.getMenu());
+        Table table = TableRepository.tables()
+                .stream()
+                .filter(t -> t.getNumber() == tableNumber)
+                .findFirst()
+                .orElse(null);
+        Map<Integer, List<Menu>> bill = BillManager.bill(Objects.requireNonNull(table).getMenu());
 
         System.out.println(BillManager.totalPayment(bill, paymentMethod) + "원");
         TableRepository.clearTable(tableNumber);
